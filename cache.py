@@ -1,3 +1,4 @@
+""""Se define una funcion cache que guarda y recupera los argumentos que se le pasan a la funcion"""
 def cache(func):
     results = {}
     def wrapper(*args):
@@ -9,15 +10,13 @@ def cache(func):
             return result
     return wrapper
 
+# se ejecuta una funcion que consume altos recursos de maquina
 @cache 
-
-def expensive_function(n):
-    if n in cache:
-        return cache[n]
-    elif n <= 1:
-        return n
+def fib(arg1):
+    if arg1 <= 1:
+        return arg1
     else:
-        result = expensive_function(n-1) + expensive_function(n-2)
-        cache[n] = result
+        result = fib(arg1-1) + fib(arg1-2)
         return result
     
+fib(100)
